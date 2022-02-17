@@ -1,4 +1,4 @@
 package com.example.happybar;
 
-public class LoginActiviy {
+public class LoginActivity {
 }
