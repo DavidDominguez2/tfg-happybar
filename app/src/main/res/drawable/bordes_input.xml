@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <shape xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/shape_my">
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/shape_my"
+    tools:ignore="ExtraText">
     android:back
     <corners android:radius="100dp"
 
