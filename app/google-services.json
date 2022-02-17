@@ -1,0 +1,69 @@
+{
+  "project_info": {
+    "project_number": "596271638447",
+    "firebase_url": "https://happybar-tfg-default-rtdb.europe-west1.firebasedatabase.app",
+    "project_id": "happybar-tfg",
+    "storage_bucket": "happybar-tfg.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:596271638447:android:6d465c086787f0e303b15a",
+        "android_client_info": {
+          "package_name": "com.example.happybar"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "596271638447-37q24dea9bqmukqd9nvd03vveedfqmo5.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA64WPIw5gKVeRvv8j2Sd74OqlGDWvi6S0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "596271638447-37q24dea9bqmukqd9nvd03vveedfqmo5.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:596271638447:android:095e714653f26b2003b15a",
+        "android_client_info": {
+          "package_name": "com.tfg.happybar"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "596271638447-37q24dea9bqmukqd9nvd03vveedfqmo5.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA64WPIw5gKVeRvv8j2Sd74OqlGDWvi6S0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "596271638447-37q24dea9bqmukqd9nvd03vveedfqmo5.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

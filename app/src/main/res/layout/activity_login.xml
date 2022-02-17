@@ -48,14 +48,14 @@
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/tfnombreUsuario"
         android:layout_width="330dp"
-        android:layout_height="39dp"
+        android:layout_height="50dp"
         android:layout_marginStart="32dp"
         android:layout_marginLeft="32dp"
         android:layout_marginEnd="32dp"
         android:layout_marginRight="32dp"
         android:background="@drawable/bordes_input"
-        app:boxCornerRadiusBottomEnd="25dp"
         android:backgroundTint="#FFFFFF"
+        app:boxCornerRadiusBottomEnd="25dp"
         app:boxCornerRadiusBottomStart="25dp"
         app:boxCornerRadiusTopEnd="25dp"
         app:boxCornerRadiusTopStart="25dp"
@@ -79,7 +79,7 @@
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/tfPwd"
         android:layout_width="330dp"
-        android:layout_height="39dp"
+        android:layout_height="50dp"
         android:layout_marginStart="32dp"
         android:layout_marginLeft="32dp"
         android:layout_marginEnd="32dp"
@@ -104,7 +104,8 @@
             android:layout_height="wrap_content"
             android:background="@drawable/bordes_input"
             android:hint="Contraseña"
-            android:password="true" />
+            android:password="true"
+            tools:ignore="Deprecated" />
 
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -119,6 +120,7 @@
         android:layout_marginRight="50dp"
         android:text="Iniciar sesión"
         app:backgroundTint="@color/amarillo"
+        android:background="@drawable/bordes_input"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
