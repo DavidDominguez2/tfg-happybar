@@ -121,6 +121,7 @@ public class LoginActivity extends AppCompatActivity {
 
             // Signed in successfully, show authenticated UI.
             updateUIGoogle(account);
+            
         } catch (ApiException e) {
             // The ApiException status code indicates the detailed failure reason.
             // Please refer to the GoogleSignInStatusCodes class reference for more information.
