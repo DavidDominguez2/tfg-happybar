@@ -1,31 +1,23 @@
 package com.example.happybar.DAO;
 
+import java.util.ArrayList;
+
 public class Usuario {
 
-    private int id;
     private String nombre;
+    private String apellido;
     private String correo;
-    private String pwd;
-    private boolean verified;
+    private ArrayList<String> favoritos;
 
-    public Usuario(int id, String nombre, String correo, String pwd, boolean verified) {
-        this.id = id;
+    public Usuario(String nombre, String apellido, String correo, ArrayList<String> favoritos) {
         this.nombre = nombre;
+        this.apellido = apellido;
         this.correo = correo;
-        this.pwd = pwd;
-        this.verified = verified;
+        this.favoritos = favoritos;
     }
 
     public Usuario(){
         super();
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
     }
 
     public String getNombre() {
@@ -36,6 +28,14 @@ public class Usuario {
         this.nombre = nombre;
     }
 
+    public String getApellido() {
+        return apellido;
+    }
+
+    public void setApellido(String apellido) {
+        this.apellido = apellido;
+    }
+
     public String getCorreo() {
         return correo;
     }
@@ -44,30 +44,21 @@ public class Usuario {
         this.correo = correo;
     }
 
-    public String getPwd() {
-        return pwd;
+    public ArrayList<String> getFavoritos() {
+        return favoritos;
     }
 
-    public void setPwd(String pwd) {
-        this.pwd = pwd;
-    }
-
-    public boolean isVerified() {
-        return verified;
-    }
-
-    public void setVerified(boolean verified) {
-        this.verified = verified;
+    public void setFavoritos(ArrayList<String> favoritos) {
+        this.favoritos = favoritos;
     }
 
     @Override
     public String toString() {
         return "Usuario{" +
-                "id=" + id +
-                ", nombre='" + nombre + '\'' +
+                "nombre='" + nombre + '\'' +
+                ", apellido='" + apellido + '\'' +
                 ", correo='" + correo + '\'' +
-                ", pwd='" + pwd + '\'' +
-                ", verified=" + verified +
+                ", favoritos=" + favoritos +
                 '}';
     }
 }
