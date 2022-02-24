@@ -5,15 +5,19 @@ public class Oferta {
     private String descripcion;
     private String img;
     private String nombre;
-    private double precio;
+    private String precio;
     private String rango;
 
-    public Oferta(String descripcion, String img, String nombre, double precio, String rango) {
+    public Oferta(String descripcion, String img, String nombre, String precio, String rango) {
         this.descripcion = descripcion;
         this.img = img;
         this.nombre = nombre;
         this.precio = precio;
         this.rango = rango;
+    }
+
+    public Oferta(){
+        super();
     }
 
     public String getDescripcion() {
@@ -40,11 +44,11 @@ public class Oferta {
         this.nombre = nombre;
     }
 
-    public double getPrecio() {
+    public String getPrecio() {
         return precio;
     }
 
-    public void setPrecio(double precio) {
+    public void setPrecio(String precio) {
         this.precio = precio;
     }
 

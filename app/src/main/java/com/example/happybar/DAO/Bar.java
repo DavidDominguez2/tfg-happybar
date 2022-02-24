@@ -15,6 +15,9 @@ public class Bar {
         this.nombre = nombre;
         this.ofertas = ofertas;
     }
+    public Bar(){
+        super();
+    }
 
     public double getLatitud() {
         return latitud;

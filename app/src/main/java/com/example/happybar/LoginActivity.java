@@ -59,6 +59,7 @@ public class LoginActivity extends AppCompatActivity {
                     auth.signInWithEmailAndPassword(user, pass).addOnCompleteListener(task -> {
                         if(task.isSuccessful()){
                             Snackbar.make(view, "Inicio de sesión correcto", Snackbar.LENGTH_SHORT).show();
+
                             //ENVIO A LA PANTALLA DE INICIO (MAPA)
                             Intent intent = new Intent(getApplicationContext(), MapsActivity.class);
                             startActivity(intent);
@@ -91,10 +92,17 @@ public class LoginActivity extends AppCompatActivity {
 
         FirebaseUser currentUser = auth.getCurrentUser();
         updateUI(currentUser);
+
+       /*
+         if(auth.getCurrentUser() != null){
+            startActivity(new Intent(LoginActivity.this, FavoritosActivity.class));
+         }
+       */
     }
 
     private void updateUI(FirebaseUser currentUser) {
-        System.out.println("CURRENT USER: " + currentUser);
+        System.out.println("CURRENT USER: " + currentUser.getUid());
+
     }
 
     private void updateUIGoogle(GoogleSignInAccount currentUser) {
@@ -117,7 +125,6 @@ public class LoginActivity extends AppCompatActivity {
         try {
             GoogleSignInAccount account = completedTask.getResult(ApiException.class);
             String idToken = account.getIdToken();
-            System.out.println("TOKEN: " + idToken);
 
             // Signed in successfully, show authenticated UI.
             updateUIGoogle(account);
