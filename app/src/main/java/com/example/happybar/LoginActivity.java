@@ -106,7 +106,7 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void updateUI(FirebaseUser currentUser) {
-        System.out.println("CURRENT USER: " + currentUser.getUid());
+        System.out.println("CURRENT USER: " + currentUser);
 
     }
 
