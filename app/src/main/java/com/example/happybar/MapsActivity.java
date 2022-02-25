@@ -33,10 +33,13 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
+
+import java.util.ArrayList;
 
 
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
@@ -49,9 +52,11 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
     //RECOGIDA DE DATOS
     private FirebaseDatabase bbdd;
-    private DatabaseReference reference;
+    private DatabaseReference reference,referenceUsuario;
     private BottomNavigationView bmenu;
     private FirebaseAuth auth;
+    private String user;
+    private ArrayList<String> favs;
 
 
     @Override
@@ -62,6 +67,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         setContentView(binding.getRoot());
 
         auth = FirebaseAuth.getInstance();
+        user = auth.getCurrentUser().getUid();
 
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
@@ -72,7 +78,28 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         bbdd = FirebaseDatabase.getInstance("https://happybar-tfg-default-rtdb.europe-west1.firebasedatabase.app/");
         reference = bbdd.getReference().child("Bares");
 
+
         //RECOGER EL USUARIO
+        referenceUsuario = bbdd.getReference().child("Ususario");
+
+        referenceUsuario.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                for (DataSnapshot hijo: snapshot.getChildren()){
+
+                    if(hijo.getKey().equalsIgnoreCase(user)){
+                        Usuario usu = hijo.getValue(Usuario.class);
+                        favs = usu.getFavoritos();
+                    }
+
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
 
 
         //MENU FOOTER
@@ -88,6 +115,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
                     case R.id.Favoritos:
                         Intent intent = new Intent(getApplicationContext(), FavoritosActivity.class);
+                        intent.putExtra("favoritos", favs);
                         startActivity(intent);
                         return true;
 

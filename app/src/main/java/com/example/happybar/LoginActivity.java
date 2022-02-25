@@ -24,6 +24,7 @@ import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.Query;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -34,6 +35,7 @@ public class LoginActivity extends AppCompatActivity {
     private TextInputEditText inputNombre;
     private TextInputEditText inputPass;
     private static final int RC_SIGN_IN = 1;
+
 
 
     @Override
@@ -77,6 +79,8 @@ public class LoginActivity extends AppCompatActivity {
                 }
             }
         });
+
+
 
         btnGoogle = findViewById(R.id.btnLoginGoogle);
         btnGoogle.setOnClickListener(new View.OnClickListener() {
