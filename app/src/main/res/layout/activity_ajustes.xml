@@ -28,7 +28,7 @@
         android:layout_marginRight="166dp"
         android:layout_marginBottom="620dp"
         android:fontFamily="@font/alegreya_black"
-        android:text="ENCUENTRA TU SITIO"
+        android:text="CONFIGURACIÓN"
         android:textColor="#FFFFFF"
         android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -38,7 +38,7 @@
         app:layout_constraintVertical_bias="0.32" />
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/tfnombreUsuario"
+        android:id="@+id/nombreUsuario"
         android:layout_width="330dp"
         android:layout_height="39dp"
         android:layout_marginStart="32dp"
@@ -65,138 +65,107 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/bordes_input"
-            android:hint="Buscar en HAPPYBAR"
+            android:hint="Nombre"
             tools:ignore="TouchTargetSizeCheck" />
 
     </com.google.android.material.textfield.TextInputLayout>
 
-    <TextView
-        android:id="@+id/textView3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="167dp"
-        android:layout_marginLeft="167dp"
-        android:layout_marginTop="24dp"
-        android:layout_marginEnd="168dp"
-        android:layout_marginRight="168dp"
-        android:text="Descubre bares maravillosos cerca de ti"
-        android:textColor="#FFFFFF"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tfnombreUsuario" />
-
-    <LinearLayout
-        android:id="@+id/linearLayout"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/apellidosUsuario"
+        android:layout_width="330dp"
+        android:layout_height="39dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginLeft="32dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginRight="32dp"
+        android:background="@drawable/bordes_input"
+        android:backgroundTint="#FFFFFF"
+        app:boxCornerRadiusBottomEnd="25dp"
+        app:boxCornerRadiusBottomStart="25dp"
+        app:boxCornerRadiusTopEnd="25dp"
+        app:boxCornerRadiusTopStart="25dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0">
+        app:layout_constraintTop_toBottomOf="@+id/nombreUsuario"
+        app:layout_constraintVertical_bias="0.0"
+        app:startIconDrawable="@drawable/ic_baseline_search_24"
+        app:startIconTint="#000000">
 
-        <RadioGroup
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/apellidosInput"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="250dp"
-            android:checkedButton="@+id/radio_unokm"
-            android:gravity="center"
-            android:orientation="horizontal">
+            android:background="@drawable/bordes_input"
+            android:hint="Apellidos"
+            tools:ignore="TouchTargetSizeCheck" />
 
-            <RadioButton
-                android:id="@+id/radio_unokm"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:buttonTint="@color/amarillo"
-                android:text="1 km"
-                android:textColor="@color/white" />
+    </com.google.android.material.textfield.TextInputLayout>
 
-            <RadioButton
-                android:id="@+id/radio_cincokm"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="0dp"
-                android:layout_marginLeft="0dp"
-                android:layout_marginTop="0dp"
-                android:layout_marginBottom="0dp"
-                android:buttonTint="@color/amarillo"
-                android:text="5 km"
-                android:textColor="@color/white" />
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/correoUsuario"
+        android:layout_width="330dp"
+        android:layout_height="39dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginLeft="32dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginRight="32dp"
+        android:background="@drawable/bordes_input"
+        android:backgroundTint="#FFFFFF"
+        app:boxCornerRadiusBottomEnd="25dp"
+        app:boxCornerRadiusBottomStart="25dp"
+        app:boxCornerRadiusTopEnd="25dp"
+        app:boxCornerRadiusTopStart="25dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/apellidosUsuario"
+        app:layout_constraintVertical_bias="0.0"
+        app:startIconDrawable="@drawable/ic_baseline_search_24"
+        app:startIconTint="#000000">
 
-            <RadioButton
-                android:id="@+id/radio_diezkm"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:buttonTint="@color/amarillo"
-                android:text="10 km"
-                android:textColor="@color/white" />
-
-            <RadioButton
-                android:id="@+id/radio_quincekm"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:buttonTint="@color/amarillo"
-                android:text="15 km"
-                android:textColor="@color/white" />
-
-        </RadioGroup>
-
-        <RadioGroup
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/correoInput"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:checkedButton="@id/radio_terraza"
-            android:gravity="center"
-            android:orientation="horizontal">
+            android:background="@drawable/bordes_input"
+            android:hint="Correo electrónico"
+            tools:ignore="TouchTargetSizeCheck" />
 
-            <RadioButton
-                android:id="@+id/radio_terraza"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:buttonTint="@color/amarillo"
-                android:text="Terraza"
-                android:textColor="@color/white"
-                android:textColorHighlight="@color/amarillo"
-                android:textColorLink="@color/amarillo"
-                android:textCursorDrawable="@drawable/bg_color" />
+    </com.google.android.material.textfield.TextInputLayout>
 
-            <RadioButton
-                android:id="@+id/radio_futbol"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="0dp"
-                android:layout_marginLeft="0dp"
-                android:layout_marginTop="0dp"
-                android:layout_marginBottom="0dp"
-                android:buttonTint="@color/amarillo"
-                android:text="Fútbol"
-                android:textColor="@color/white" />
-
-        </RadioGroup>
-
-    </LinearLayout>
+    <Button
+        android:id="@+id/btnLoginGoogle"
+        android:layout_width="330dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:background="@drawable/bordes_input"
+        android:text="Continuar con Google"
+        app:backgroundTint="#4285F4"
+        app:icon="@drawable/google"
+        app:iconPadding="0dp"
+        app:iconSize="32dp"
+        app:iconTintMode="multiply"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/correoUsuario"
+        app:layout_constraintVertical_bias="0.0" />
 
     <LinearLayout
+        android:id="@+id/linearLayout2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="360dp"
+        android:layout_marginTop="1500dp"
         android:background="@color/amarillo"
         android:gravity="bottom|center_horizontal"
         android:orientation="vertical"
         app:layout_constraintBottom_toTopOf="@+id/imageView3"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0">
-
-        <fragment xmlns:android="http://schemas.android.com/apk/res/android"
-            xmlns:map="http://schemas.android.com/apk/res-auto"
-            xmlns:tools="http://schemas.android.com/tools"
-            android:id="@+id/map"
-            android:name="com.google.android.gms.maps.SupportMapFragment"
-            android:layout_width="match_parent"
-            android:layout_height="320dp"
-            tools:context=".MapsActivity" />
+        app:layout_constraintTop_toTopOf="parent">
 
         <com.google.android.material.bottomnavigation.BottomNavigationView
             android:id="@+id/bottom_navigation"

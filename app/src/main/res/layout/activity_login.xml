@@ -46,7 +46,7 @@
         app:layout_constraintVertical_bias="0.060000002" />
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/tfnombreUsuario"
+        android:id="@+id/nombreUsuario"
         android:layout_width="330dp"
         android:layout_height="60dp"
         android:layout_marginStart="32dp"
@@ -55,6 +55,8 @@
         android:layout_marginRight="32dp"
         android:background="@drawable/bordes_input"
         android:backgroundTint="#FFFFFF"
+        app:boxBackgroundColor="#00FFFFFF"
+        app:boxBackgroundMode="filled"
         app:boxCornerRadiusBottomEnd="25dp"
         app:boxCornerRadiusBottomStart="25dp"
         app:boxCornerRadiusTopEnd="25dp"
@@ -86,6 +88,8 @@
         android:layout_marginRight="32dp"
         android:background="@drawable/bordes_input"
         android:backgroundTint="#FFFFFF"
+        app:boxBackgroundColor="#00FFFFFF"
+        app:boxBackgroundMode="filled"
         app:boxCornerRadiusBottomEnd="25dp"
         app:boxCornerRadiusBottomStart="25dp"
         app:boxCornerRadiusTopEnd="25dp"
