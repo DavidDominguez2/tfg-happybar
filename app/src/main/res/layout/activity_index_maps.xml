@@ -15,7 +15,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/logo" />
+        app:srcCompat="@drawable/logo"
+        tools:srcCompat="@drawable/logo" />
 
     <TextView
         android:id="@+id/textView2"
@@ -180,7 +181,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="360dp"
+        android:layout_marginTop="362dp"
         android:background="@color/amarillo"
         android:gravity="bottom|center_horizontal"
         android:orientation="vertical"
