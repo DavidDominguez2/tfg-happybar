@@ -74,13 +74,10 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
-<<<<<<< HEAD
-
-
-        btnGoogle = findViewById(R.id.btnLoginGoogle);
-=======
         btnGoogle = findViewById(R.id.btnContrasena);
->>>>>>> 2bdf8ac6caa52f1097fa2e3b16cb0df657d52e15
+
+        btnGoogle = findViewById(R.id.btnContrasena);
+
         btnGoogle.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
