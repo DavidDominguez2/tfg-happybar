@@ -15,6 +15,7 @@ import android.os.Bundle;
 import android.view.MenuItem;
 
 import com.example.happybar.DAO.Bar;
+import com.example.happybar.DAO.Usuario;
 import com.example.happybar.databinding.ActivityIndexMapsBinding;
 import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -46,7 +47,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     double lat = 0.0;
     double lng = 0.0;
 
-
     //RECOGIDA DE DATOS
     private FirebaseDatabase bbdd;
     private DatabaseReference reference;
@@ -58,21 +58,24 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        auth = FirebaseAuth.getInstance();
-
         binding = ActivityIndexMapsBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+
+        auth = FirebaseAuth.getInstance();
 
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
 
-
+        //INSTANCIAR LA BBDD
         bbdd = FirebaseDatabase.getInstance("https://happybar-tfg-default-rtdb.europe-west1.firebasedatabase.app/");
         reference = bbdd.getReference().child("Bares");
 
+        //RECOGER EL USUARIO
 
+
+        //MENU FOOTER
         bmenu = findViewById(R.id.bottom_navigation);
 
         bmenu.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -84,9 +87,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                         return true;
 
                     case R.id.Favoritos:
-
-                        startActivity(new Intent(getApplicationContext(), FavoritosActivity.class));
-
+                        Intent intent = new Intent(getApplicationContext(), FavoritosActivity.class);
+                        startActivity(intent);
                         return true;
 
                     case R.id.Ajustes:
@@ -104,6 +106,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             }
         });
         bmenu.setSelectedItemId(R.id.Mapa);
+
+
 
 
     }

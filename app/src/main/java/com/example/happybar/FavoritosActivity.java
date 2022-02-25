@@ -14,6 +14,7 @@ public class FavoritosActivity extends AppCompatActivity {
 
     private BottomNavigationView bmenu;
     private FirebaseAuth auth;
+    private String user;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,8 +34,7 @@ public class FavoritosActivity extends AppCompatActivity {
                         return true;
 
                     case R.id.Favoritos:
-
-
+                        System.out.println("USUARIO: " + auth.getCurrentUser().getUid());
 
                         return true;
 
@@ -53,7 +53,6 @@ public class FavoritosActivity extends AppCompatActivity {
             }
         });
         bmenu.setSelectedItemId(R.id.Favoritos);
-
     }
     }
 
