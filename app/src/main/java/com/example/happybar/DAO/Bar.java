@@ -8,12 +8,14 @@ public class Bar {
     private double longitud;
     private String nombre;
     private ArrayList<Oferta> ofertas;
+    private String rango;
 
-    public Bar(double latitud, double longitud, String nombre, ArrayList<Oferta> ofertas) {
+    public Bar(double latitud, double longitud, String nombre, ArrayList<Oferta> ofertas, String rango) {
         this.latitud = latitud;
         this.longitud = longitud;
         this.nombre = nombre;
         this.ofertas = ofertas;
+        this.rango = rango;
     }
     public Bar(){
         super();
@@ -51,6 +53,14 @@ public class Bar {
         this.ofertas = ofertas;
     }
 
+    public String getRango() {
+        return rango;
+    }
+
+    public void setRango(String rango) {
+        this.rango = rango;
+    }
+
     @Override
     public String toString() {
         return "Bar{" +
@@ -58,6 +68,7 @@ public class Bar {
                 ", longitud=" + longitud +
                 ", nombre='" + nombre + '\'' +
                 ", ofertas=" + ofertas +
+                ", rango='" + rango + '\'' +
                 '}';
     }
 }

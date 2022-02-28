@@ -2,12 +2,14 @@ package com.example.happybar;
 
 import androidx.annotation.NonNull;
 import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.FragmentActivity;
 
 import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.content.res.Resources;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
@@ -17,6 +19,8 @@ import android.view.MenuItem;
 import com.example.happybar.DAO.Bar;
 import com.example.happybar.DAO.Usuario;
 import com.example.happybar.databinding.ActivityIndexMapsBinding;
+import com.google.android.gms.location.FusedLocationProviderClient;
+import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -26,9 +30,11 @@ import com.google.android.gms.maps.model.BitmapDescriptor;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.MapStyleOptions;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -46,13 +52,11 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     //OBJETOS MAPA
     private GoogleMap mMap;
     private ActivityIndexMapsBinding binding;
-    private Marker marcadorUsuario;
-    double lat = 0.0;
-    double lng = 0.0;
+    private FusedLocationProviderClient fusedLocationProviderClient;
 
     //RECOGIDA DE DATOS
     private FirebaseDatabase bbdd;
-    private DatabaseReference reference,referenceUsuario;
+    private DatabaseReference reference, referenceUsuario;
     private BottomNavigationView bmenu;
     private FirebaseAuth auth;
     private String user;
@@ -85,9 +89,9 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         referenceUsuario.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                for (DataSnapshot hijo: snapshot.getChildren()){
+                for (DataSnapshot hijo : snapshot.getChildren()) {
 
-                    if(hijo.getKey().equalsIgnoreCase(user)){
+                    if (hijo.getKey().equalsIgnoreCase(user)) {
                         Usuario usu = hijo.getValue(Usuario.class);
                         favs = usu.getFavoritos();
                     }
@@ -135,9 +139,19 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         });
         bmenu.setSelectedItemId(R.id.Mapa);
 
+        getLocalizacion();
+        fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this);
 
+    }
 
-
+    private void getLocalizacion(){
+        int permiso = ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION);
+        if(permiso == PackageManager.PERMISSION_DENIED){
+            if(ActivityCompat.shouldShowRequestPermissionRationale(this, Manifest.permission.ACCESS_FINE_LOCATION)){
+            }else{
+                ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, 1);
+            }
+        }
     }
 
     /**
@@ -152,13 +166,94 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
+
+        //DISEÑO MAPA
+        try {
+            boolean success = mMap.setMapStyle(MapStyleOptions.loadRawResourceStyle(this, R.raw.style_map));
+            if (!success) {
+                System.out.println("MapsActivityRaw: " + "Style parsing failed."); }
+        } catch (Resources.NotFoundException e) {
+            System.out.println("MapsActivityRaw: " + "Can't find style.");
+        }
+
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            return;
+        }
+        mMap.setMyLocationEnabled(true);
+
+        mMap.getUiSettings().setMyLocationButtonEnabled(true);
+
+        fusedLocationProviderClient.getLastLocation()
+        .addOnSuccessListener(this, new OnSuccessListener<Location>() {
+            @Override
+            public void onSuccess(Location location) {
+                LatLng lct = new LatLng(location.getLatitude(), location.getLongitude());
+                mMap.moveCamera(CameraUpdateFactory.newLatLng(lct));
+
+                CameraPosition cPosition = CameraPosition.builder().target(lct).zoom(13).tilt(45).build();
+                mMap.animateCamera(CameraUpdateFactory.newCameraPosition(cPosition));
+
+                if (location != null) {
+                    // Logic to handle location object
+                }
+            }
+        });
+
+
+
+        /*LocationManager locationManager = (LocationManager) MapsActivity.this.getSystemService(Context.LOCATION_SERVICE);
+        LocationListener locationListener = new LocationListener() {
+            @Override
+            public void onLocationChanged(Location location) {
+                LatLng miUbicacion = new LatLng(location.getLatitude(), location.getLongitude());
+                mMap.moveCamera(CameraUpdateFactory.newLatLng(miUbicacion));
+                CameraPosition cameraPosition = new CameraPosition.Builder()
+                        .target(miUbicacion)
+                        .zoom(10)
+                        .bearing(90)
+                        .tilt(45)
+                        .build();
+                mMap.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition));
+            }
+
+            @Override
+            public void onStatusChanged(String provider, int status, Bundle extras) {
+
+            }
+
+            @Override
+            public void onProviderEnabled(String provider) {
+
+            }
+
+            @Override
+            public void onProviderDisabled(String provider) {
+
+            }
+        };
+        locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 0, 0, locationListener);*/
+
         reference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
 
                 for (DataSnapshot hijo : snapshot.getChildren()) {
                     Bar bar = hijo.getValue(Bar.class);
-                    mMap.addMarker(new MarkerOptions().position(latLng(bar.getLatitud(), bar.getLongitud())).title(bar.getNombre()));
+                    switch (bar.getRango()){
+                        case "bronce":
+                            mMap.addMarker(new MarkerOptions().position(latLng(bar.getLatitud(), bar.getLongitud())).icon(BitmapDescriptorFactory.fromResource(R.drawable.bronce)).title(bar.getNombre()));
+                            break;
+                        case "plata":
+                            mMap.addMarker(new MarkerOptions().position(latLng(bar.getLatitud(), bar.getLongitud())).icon(BitmapDescriptorFactory.fromResource(R.drawable.plata)).title(bar.getNombre()));
+                            break;
+                        case "oro":
+                            mMap.addMarker(new MarkerOptions().position(latLng(bar.getLatitud(), bar.getLongitud())).icon(BitmapDescriptorFactory.fromResource(R.drawable.oro)).title(bar.getNombre()));
+                            break;
+                        case "diamante":
+                            mMap.addMarker(new MarkerOptions().position(latLng(bar.getLatitud(), bar.getLongitud())).icon(BitmapDescriptorFactory.fromResource(R.drawable.diamante)).title(bar.getNombre()));
+                            break;
+                    }
+
                 }
             }
 
@@ -167,40 +262,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
             }
         });
-        miUbicacion();
-    }
 
-    private void agregarMarcador(double lat, double lng) {
-        LatLng coordenadas = new LatLng(lat, lng);
-        CameraUpdate miUbicacion = CameraUpdateFactory.newLatLngZoom(coordenadas, 16);
-        if (marcadorUsuario != null) marcadorUsuario.remove();
-        marcadorUsuario = mMap.addMarker(new MarkerOptions().position(coordenadas).icon(BitmapDescriptorFactory.fromResource(R.mipmap.google)));
-        mMap.animateCamera(miUbicacion);
-    }
-
-    private void actualizarUbicacion(Location location) {
-        if (location != null) {
-            lat = location.getLatitude();
-            lng = location.getLongitude();
-            agregarMarcador(lat, lng);
-        }
-    }
-
-    LocationListener locListener = new LocationListener() {
-        @Override
-        public void onLocationChanged(@NonNull Location location) {
-            actualizarUbicacion(location);
-        }
-    };
-
-    private void miUbicacion() {
-        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-            return;
-        }
-        LocationManager locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
-        Location location = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
-        actualizarUbicacion(location);
-        locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 100000, 0, locListener);
     }
 
     public LatLng latLng(double lat, double lng){
