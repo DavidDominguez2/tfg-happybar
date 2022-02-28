@@ -6,8 +6,12 @@ import android.view.MenuItem;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.DividerItemDecoration;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.happybar.DAO.Bar;
+import com.example.happybar.DAO.Oferta;
 import com.example.happybar.DAO.Usuario;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
@@ -28,12 +32,27 @@ public class FavoritosActivity extends AppCompatActivity {
     private DatabaseReference reference;
     private String user;
     private static ArrayList<String> favs;
+    private RecyclerView rv;
+    private AdaptadorBares adapter;
+    ArrayList<Bar> listaBares;
+
+
+    private AdaptadorBares.listenersInterfaz goDescription = new AdaptadorBares.listenersInterfaz(){
+
+        @Override
+        public void clickEnElementoCard(int pos) {
+           System.out.println("Aquí va la acción de ir al resumen de la carta");
+        }
+    };
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_favs);
+
+
+        listaBares = new ArrayList<Bar>();
 
         Intent idRecibido = getIntent();
         favs = idRecibido.getStringArrayListExtra("favoritos");
@@ -52,6 +71,7 @@ public class FavoritosActivity extends AppCompatActivity {
                         if(hijo.getKey().equalsIgnoreCase(bar)){
                             Bar b = hijo .getValue(Bar.class);
                             System.out.println(b);
+
                         }
                     }
                 }
@@ -66,6 +86,14 @@ public class FavoritosActivity extends AppCompatActivity {
 
 
 
+
+
+        rv = findViewById(R.id.recyclerView);
+        rv.setLayoutManager(new LinearLayoutManager(this));
+        rv.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.VERTICAL));
+        rv.setAdapter(adapter);
+        listaBares.add(new Bar(3.2,0.1,"ElPintxo", new ArrayList<Oferta>()));
+        adapter = new AdaptadorBares(listaBares, goDescription);
 
 
 
