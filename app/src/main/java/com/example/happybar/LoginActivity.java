@@ -76,15 +76,20 @@ public class LoginActivity extends AppCompatActivity {
 
         btnGoogle = findViewById(R.id.btnContrasena);
 
-        btnGoogle = findViewById(R.id.btnContrasena);
-
         btnGoogle.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(getApplicationContext(), RegisterActivity.class));
+            }
+        });
+
+        /*btnGoogle.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent signInIntent = googleSignInClient.getSignInIntent();
                 startActivityForResult(signInIntent, RC_SIGN_IN);
             }
-        });
+        });/*
 
 
     }
