@@ -87,7 +87,11 @@ public class FavoritosActivity extends AppCompatActivity {
         rv.setLayoutManager(new LinearLayoutManager(this));
         rv.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.VERTICAL));
         rv.setAdapter(adapter);
+
         listaBares.add(new Bar(3.2,0.1,"ElPintxo", new ArrayList<Oferta>(), "oro"));
+
+       //listaBares.add(new Bar(3.2,0.1,"ElPintxo", new ArrayList<Oferta>()));
+
         adapter = new AdaptadorBares(listaBares, goDescription);
 
 
