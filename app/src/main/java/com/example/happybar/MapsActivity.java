@@ -10,11 +10,13 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.content.res.Resources;
+import android.graphics.Color;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.widget.RadioGroup;
 
 import com.example.happybar.DAO.Bar;
 import com.example.happybar.DAO.Usuario;
@@ -29,6 +31,8 @@ import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.BitmapDescriptor;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.CameraPosition;
+import com.google.android.gms.maps.model.Circle;
+import com.google.android.gms.maps.model.CircleOptions;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MapStyleOptions;
 import com.google.android.gms.maps.model.Marker;
@@ -61,6 +65,10 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     private FirebaseAuth auth;
     private String user;
     private ArrayList<String> favs;
+
+    //FILTROS
+    RadioGroup filterDistan;
+    private Circle circleFiltro;
 
 
     @Override
@@ -105,6 +113,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             }
         });
 
+        //FILTROS
+        filterDistan = findViewById(R.id.idFiltrosDistancia);
 
         //MENU FOOTER
         bmenu = findViewById(R.id.bottom_navigation);
@@ -183,8 +193,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
         mMap.getUiSettings().setMyLocationButtonEnabled(true);
 
-        fusedLocationProviderClient.getLastLocation()
-        .addOnSuccessListener(this, new OnSuccessListener<Location>() {
+        fusedLocationProviderClient.getLastLocation().addOnSuccessListener(this, new OnSuccessListener<Location>() {
             @Override
             public void onSuccess(Location location) {
                 LatLng lct = new LatLng(location.getLatitude(), location.getLongitude());
@@ -192,6 +201,60 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
                 CameraPosition cPosition = CameraPosition.builder().target(lct).zoom(13).tilt(45).build();
                 mMap.animateCamera(CameraUpdateFactory.newCameraPosition(cPosition));
+
+                filterDistan.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+
+                    @Override
+                    public void onCheckedChanged(RadioGroup radioGroup, int i) {
+                        CameraPosition cFilter = null;
+                        switch (radioGroup.getCheckedRadioButtonId()){
+                            case R.id.radio_unokm:
+                                cFilter = CameraPosition.builder().target(lct).zoom(15).tilt(45).build();
+                                if(circleFiltro == null){
+                                    mMap.animateCamera(CameraUpdateFactory.newCameraPosition(cFilter));
+                                    circleFiltro = mMap.addCircle(new CircleOptions().center(lct).fillColor(Color.argb(64, 255, 252, 0)).radius(500).strokeWidth(0.0f));
+                                }else{
+                                    circleFiltro.remove();
+                                    circleFiltro = mMap.addCircle(new CircleOptions().center(lct).fillColor(Color.argb(64, 255, 252, 0)).radius(500).strokeWidth(0.0f));
+                                    mMap.animateCamera(CameraUpdateFactory.newCameraPosition(cFilter));
+                                }
+                                break;
+                            case R.id.radio_cincokm:
+                                cFilter = CameraPosition.builder().target(lct).zoom(13).tilt(45).build();
+                                if(circleFiltro == null){
+                                    mMap.animateCamera(CameraUpdateFactory.newCameraPosition(cFilter));
+                                    circleFiltro = mMap.addCircle(new CircleOptions().center(lct).fillColor(Color.argb(64, 255, 252, 0)).radius(2500).strokeWidth(0.0f));
+                                }else{
+                                    circleFiltro.remove();
+                                    circleFiltro = mMap.addCircle(new CircleOptions().center(lct).fillColor(Color.argb(64, 255, 252, 0)).radius(2500).strokeWidth(0.0f));
+                                    mMap.animateCamera(CameraUpdateFactory.newCameraPosition(cFilter));
+                                }
+                                break;
+                            case R.id.radio_diezkm:
+                                cFilter = CameraPosition.builder().target(lct).zoom(12).tilt(45).build();
+                                if(circleFiltro == null){
+                                    mMap.animateCamera(CameraUpdateFactory.newCameraPosition(cFilter));
+                                    circleFiltro = mMap.addCircle(new CircleOptions().center(lct).fillColor(Color.argb(64, 255, 252, 0)).radius(5000).strokeWidth(0.0f));
+                                }else{
+                                    circleFiltro.remove();
+                                    circleFiltro = mMap.addCircle(new CircleOptions().center(lct).fillColor(Color.argb(64, 255, 252, 0)).radius(5000).strokeWidth(0.0f));
+                                    mMap.animateCamera(CameraUpdateFactory.newCameraPosition(cFilter));
+                                }
+                                break;
+                            case R.id.radio_quincekm:
+                                cFilter = CameraPosition.builder().target(lct).zoom(11).tilt(45).build();
+                                if(circleFiltro == null){
+                                    mMap.animateCamera(CameraUpdateFactory.newCameraPosition(cFilter));
+                                    circleFiltro = mMap.addCircle(new CircleOptions().center(lct).fillColor(Color.argb(64, 255, 252, 0)).radius(7500).strokeWidth(0.0f));
+                                }else{
+                                    circleFiltro.remove();
+                                    circleFiltro = mMap.addCircle(new CircleOptions().center(lct).fillColor(Color.argb(64, 255, 252, 0)).radius(7500).strokeWidth(0.0f));
+                                    mMap.animateCamera(CameraUpdateFactory.newCameraPosition(cFilter));
+                                }
+                                break;
+                        }
+                    }
+                });
 
                 if (location != null) {
                     // Logic to handle location object

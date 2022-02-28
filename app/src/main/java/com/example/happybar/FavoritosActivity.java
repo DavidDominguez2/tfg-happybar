@@ -83,16 +83,11 @@ public class FavoritosActivity extends AppCompatActivity {
             }
         });
 
-
-
-
-
-
         rv = findViewById(R.id.recyclerView);
         rv.setLayoutManager(new LinearLayoutManager(this));
         rv.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.VERTICAL));
         rv.setAdapter(adapter);
-        listaBares.add(new Bar(3.2,0.1,"ElPintxo", new ArrayList<Oferta>()));
+        listaBares.add(new Bar(3.2,0.1,"ElPintxo", new ArrayList<Oferta>(), "oro"));
         adapter = new AdaptadorBares(listaBares, goDescription);
 
 

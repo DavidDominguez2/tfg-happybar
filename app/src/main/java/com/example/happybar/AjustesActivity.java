@@ -35,7 +35,6 @@ public class AjustesActivity extends AppCompatActivity {
                     case R.id.Favoritos:
 
                         startActivity(new Intent(getApplicationContext(), FavoritosActivity.class));
-
                         return true;
 
                     case R.id.Ajustes:
