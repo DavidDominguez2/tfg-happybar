@@ -1,4 +1,4 @@
-package com.example.happybar;
+/*package com.example.happybar;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -32,4 +32,4 @@ public class SplashActivity extends AppCompatActivity {
 
 
     }
-}
+}*/
