@@ -60,8 +60,9 @@ public class FavoritosActivity extends AppCompatActivity {
                                 snapshot.getRef().child(hijo.getKey()).removeValue();
                             }
                         }
-                        listaBares.remove(pos);
-                        adapter.notifyItemRemoved(pos);
+                       //Da fallo y se sale de la app
+                        //listaBares.remove(pos);
+                        //adapter.notifyItemRemoved(pos);
                     }
                     @Override
                     public void onCancelled(@NonNull DatabaseError error) {
