@@ -92,7 +92,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
 
         //RECOGER EL USUARIO
-        referenceUsuario = bbdd.getReference().child("Ususario");
+        referenceUsuario = bbdd.getReference().child("Usuario");
 
         referenceUsuario.addValueEventListener(new ValueEventListener() {
             @Override
@@ -196,8 +196,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         fusedLocationProviderClient.getLastLocation().addOnSuccessListener(this, new OnSuccessListener<Location>() {
             @Override
             public void onSuccess(Location location) {
-                //LatLng lct = new LatLng(location.getLatitude(), location.getLongitude());
-                LatLng lct = new LatLng(1, 1);
+                LatLng lct = new LatLng(location.getLatitude(), location.getLongitude());
+                //LatLng lct = new LatLng(1, 1);
                 mMap.moveCamera(CameraUpdateFactory.newLatLng(lct));
 
                 CameraPosition cPosition = CameraPosition.builder().target(lct).zoom(13).tilt(45).build();

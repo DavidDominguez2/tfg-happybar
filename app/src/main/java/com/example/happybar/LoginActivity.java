@@ -18,7 +18,6 @@ import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.Query;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -44,7 +43,7 @@ public class LoginActivity extends AppCompatActivity {
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN).requestEmail().build();
         googleSignInClient = GoogleSignIn.getClient(this, gso);
 
-        inputNombre = findViewById(R.id.nombreInput);
+        inputNombre = findViewById(R.id.nombreInputR);
         inputPass = findViewById(R.id.pwdInput);
 
         btnLogin = findViewById(R.id.btnLogin);
@@ -74,7 +73,7 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
-        btnGoogle = findViewById(R.id.btnContrasena);
+        btnGoogle = findViewById(R.id.pwdInputR);
 
         btnGoogle.setOnClickListener(new View.OnClickListener() {
             @Override

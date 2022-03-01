@@ -70,7 +70,7 @@
         app:startIconTint="#000000">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/nombreInput"
+            android:id="@+id/nombreInputR"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@drawable/bordes_input"
@@ -132,7 +132,7 @@
         app:layout_constraintVertical_bias="0.201" />
 
     <Button
-        android:id="@+id/btnContrasena"
+        android:id="@+id/pwdInputR"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="50dp"

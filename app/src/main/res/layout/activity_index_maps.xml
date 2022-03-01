@@ -64,7 +64,7 @@
         app:startIconTint="#000000">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/nombreInput"
+            android:id="@+id/nombreInputR"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/bordes_input"
