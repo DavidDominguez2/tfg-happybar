@@ -8,7 +8,7 @@
     android:background="#242424">
 
     <ImageView
-        android:id="@+id/imageView3"
+        android:id="@+id/imagenLogo"
         android:layout_width="0dp"
         android:layout_height="72dp"
         android:background="@color/amarillo"
@@ -34,7 +34,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView3"
+        app:layout_constraintTop_toBottomOf="@+id/imagenLogo"
         app:layout_constraintVertical_bias="0.32" />
 
     <com.google.android.material.textfield.TextInputLayout
@@ -58,7 +58,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView2"
         app:layout_constraintVertical_bias="0.0"
-        app:startIconDrawable="@drawable/ic_baseline_search_24"
+        app:startIconDrawable="@drawable/ic_baseline_account_circle_24"
         app:startIconTint="#000000">
 
         <com.google.android.material.textfield.TextInputEditText
@@ -91,7 +91,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/nombreUsuario"
         app:layout_constraintVertical_bias="0.0"
-        app:startIconDrawable="@drawable/ic_baseline_search_24"
+        app:startIconDrawable="@drawable/ic_baseline_group_24"
         app:startIconTint="#000000">
 
         <com.google.android.material.textfield.TextInputEditText
@@ -124,7 +124,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/apellidosUsuario"
         app:layout_constraintVertical_bias="0.0"
-        app:startIconDrawable="@drawable/ic_baseline_search_24"
+        app:startIconDrawable="@drawable/ic_baseline_alternate_email_24"
         app:startIconTint="#000000">
 
         <com.google.android.material.textfield.TextInputEditText
@@ -158,7 +158,7 @@
         app:layout_constraintTop_toBottomOf="@+id/correoUsuario"
         app:layout_constraintVertical_bias="0.0"
         app:passwordToggleTintMode="screen"
-        app:startIconDrawable="@drawable/ic_baseline_search_24"
+        app:startIconDrawable="@drawable/ic_baseline_lock_24"
         app:startIconTint="#000000">
 
         <com.google.android.material.textfield.TextInputEditText
@@ -178,9 +178,11 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
         android:background="@drawable/bordes_input"
-        android:text="CONFIRMAR CAMBIOS"
+        android:insetRight="30dp"
+        android:text="REGISTRO"
         android:textColor="#FFFFFF"
-        app:backgroundTint="#4285F4"
+        android:textStyle="normal"
+        app:backgroundTint="@color/amarillo"
         app:icon="@drawable/logo"
         app:iconPadding="0dp"
         app:iconSize="32dp"

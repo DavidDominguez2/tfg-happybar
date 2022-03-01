@@ -8,7 +8,7 @@
     android:background="#242424">
 
     <ImageView
-        android:id="@+id/imageView3"
+        android:id="@+id/imagenLogo"
         android:layout_width="0dp"
         android:layout_height="72dp"
         android:background="@color/amarillo"
@@ -35,7 +35,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView3"
+        app:layout_constraintTop_toBottomOf="@+id/imagenLogo"
         app:layout_constraintVertical_bias="0.0" />
 
     <com.google.android.material.textfield.TextInputLayout
@@ -64,7 +64,7 @@
         app:startIconTint="#000000">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/nombreInput"
+            android:id="@+id/buscador"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/bordes_input"
@@ -186,7 +186,7 @@
         android:background="@color/amarillo"
         android:gravity="bottom|center_horizontal"
         android:orientation="vertical"
-        app:layout_constraintBottom_toTopOf="@+id/imageView3"
+        app:layout_constraintBottom_toTopOf="@+id/imagenLogo"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"

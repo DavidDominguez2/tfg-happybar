@@ -8,7 +8,7 @@
     android:background="#242424">
 
     <ImageView
-        android:id="@+id/imageView3"
+        android:id="@+id/imagenLogo"
         android:layout_width="0dp"
         android:layout_height="72dp"
         android:background="@color/amarillo"
@@ -34,7 +34,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView3"
+        app:layout_constraintTop_toBottomOf="@+id/imagenLogo"
         app:layout_constraintVertical_bias="0.32" />
 
     <TextView
@@ -61,7 +61,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/imageView3"
+        app:layout_constraintTop_toTopOf="@+id/imagenLogo"
         app:layout_constraintVertical_bias="1.0"
         app:menu="@menu/bottom_navigation_menu" />
 

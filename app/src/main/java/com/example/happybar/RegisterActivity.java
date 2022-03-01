@@ -55,12 +55,26 @@ public class RegisterActivity extends AppCompatActivity {
         btnRegistrar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                System.out.println(inputCorreo.getText().toString());
-
+                    String nombre = inputNombre.getText().toString();
+                    String apellidos = inputApellidos.getText().toString();
+                    String correo = inputCorreo.getText().toString();
+                    String pwd = inputPwd.getText().toString();
                 //mDatabaseReference.setValue(user);
-                auth.createUserWithEmailAndPassword(inputCorreo.getText().toString(), inputPwd.getText().toString()).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+
+                if(nombre.equalsIgnoreCase("") || apellidos.equalsIgnoreCase("") || correo.equalsIgnoreCase("") || pwd.equalsIgnoreCase("")) {
+
+                    Toast toast = Toast.makeText(getApplicationContext(), "Algún campo está vacío. Revisa tus datos", Toast.LENGTH_LONG);
+                    toast.show();
+
+
+                } else{
+
+
+
+                auth.createUserWithEmailAndPassword(correo, pwd).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
+
                         if (task.isSuccessful()) {
                             Toast toast = Toast.makeText(getApplicationContext(), "Te has registrado correctamente", Toast.LENGTH_LONG);
                             toast.show();
@@ -74,17 +88,21 @@ public class RegisterActivity extends AppCompatActivity {
                             startActivity(intent);
 
                         }else{
-                            Toast toast = Toast.makeText(getApplicationContext(), "No te has registrado correctamente, comprueba los campos.", Toast.LENGTH_LONG);
+                            Toast toast = Toast.makeText(getApplicationContext(), "Algún dato no es correcto.", Toast.LENGTH_LONG);
                             toast.show();
                         }
+
 
                     }
 
 
 
-                });
+                }
 
 
+                );
+
+                }
             }
 
 
