@@ -17,7 +17,7 @@ public class AdaptadorBares extends RecyclerView.Adapter<AdaptadorBares.BarViewH
     private ArrayList<Bar> listaBares;
     private listenersInterfaz mOnClickListener;
 
-    public AdaptadorBares(ArrayList<Bar> listaPedidos, listenersInterfaz mOnClickListener) {
+    public AdaptadorBares(ArrayList<Bar> listaBares, listenersInterfaz mOnClickListener) {
         this.listaBares = listaBares;
         this.mOnClickListener = mOnClickListener;
     }

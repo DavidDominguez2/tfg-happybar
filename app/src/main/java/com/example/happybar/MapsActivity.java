@@ -196,6 +196,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         fusedLocationProviderClient.getLastLocation().addOnSuccessListener(this, new OnSuccessListener<Location>() {
             @Override
             public void onSuccess(Location location) {
+                //LatLng lct = new LatLng(location.getLatitude(), location.getLongitude());
                 LatLng lct = new LatLng(1, 1);
                 mMap.moveCamera(CameraUpdateFactory.newLatLng(lct));
 

@@ -1,4 +1,4 @@
-package com.example.happybar;
+/*package com.example.happybar;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -19,7 +19,7 @@ public class SplashActivity extends AppCompatActivity {
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
-        setContentView(R.layout.activity_splash);
+        setContentView(R.layout.activity_login);
 
         new Handler().postDelayed(new Runnable() {
             @Override
@@ -32,4 +32,4 @@ public class SplashActivity extends AppCompatActivity {
 
 
     }
-}
+}*/

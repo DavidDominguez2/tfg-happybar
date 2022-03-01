@@ -63,18 +63,26 @@ public class FavoritosActivity extends AppCompatActivity {
         bbdd = FirebaseDatabase.getInstance("https://happybar-tfg-default-rtdb.europe-west1.firebasedatabase.app/");
         reference = bbdd.getReference().child("Bares");
 
+        adapter = new AdaptadorBares(listaBares, goDescription);
+        rv = findViewById(R.id.recyclerView);
+        rv.setLayoutManager(new LinearLayoutManager(this));
+        rv.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.VERTICAL));
+        rv.setAdapter(adapter);
+
         reference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 for(DataSnapshot hijo: snapshot.getChildren()){
                     for (String bar: favs) {
-                        if(hijo.getKey().equalsIgnoreCase(bar)){
-                            Bar b = hijo .getValue(Bar.class);
+                        if (hijo.getKey().equalsIgnoreCase(bar)) {
+                            Bar b = hijo.getValue(Bar.class);
                             System.out.println(b);
-
+                            listaBares.add(b);
                         }
                     }
+                    adapter.notifyItemChanged(0);
                 }
+
             }
 
             @Override
@@ -83,16 +91,6 @@ public class FavoritosActivity extends AppCompatActivity {
             }
         });
 
-        rv = findViewById(R.id.recyclerView);
-        rv.setLayoutManager(new LinearLayoutManager(this));
-        rv.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.VERTICAL));
-        rv.setAdapter(adapter);
-
-        listaBares.add(new Bar(3.2,0.1,"ElPintxo", new ArrayList<Oferta>(), "oro"));
-
-       //listaBares.add(new Bar(3.2,0.1,"ElPintxo", new ArrayList<Oferta>()));
-
-        adapter = new AdaptadorBares(listaBares, goDescription);
 
 
 
