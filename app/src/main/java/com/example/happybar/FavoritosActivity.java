@@ -1,8 +1,11 @@
 package com.example.happybar;
 
 import android.content.Intent;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.ImageView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -35,6 +38,8 @@ public class FavoritosActivity extends AppCompatActivity {
     private RecyclerView rv;
     private AdaptadorBares adapter;
     ArrayList<Bar> listaBares;
+    private ImageView logo;
+    MediaPlayer mp;
 
 
     private AdaptadorBares.listenersInterfaz goDescription = new AdaptadorBares.listenersInterfaz(){
@@ -124,6 +129,21 @@ public class FavoritosActivity extends AppCompatActivity {
         });
         bmenu.setSelectedItemId(R.id.Favoritos);
 
-        }
+        logo = findViewById(R.id.imagenLogo);
+        mp = MediaPlayer.create(this, R.raw.cancion);
+
+        logo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(mp.isPlaying()){
+                    mp.pause();
+                }else {
+                    mp.start();
+                }
+            }
+        });
+
+
+    }
     }
 

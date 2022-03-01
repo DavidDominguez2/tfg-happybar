@@ -8,7 +8,7 @@
     android:background="#242424">
 
     <ImageView
-        android:id="@+id/imageView3"
+        android:id="@+id/imagenLogo"
         android:layout_width="0dp"
         android:layout_height="72dp"
         android:background="@color/amarillo"
@@ -34,7 +34,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView3"
+        app:layout_constraintTop_toBottomOf="@+id/imagenLogo"
         app:layout_constraintVertical_bias="0.32" />
 
     <com.google.android.material.textfield.TextInputLayout
@@ -62,7 +62,7 @@
         app:startIconTint="#000000">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/nombreInputR"
+            android:id="@+id/nombreInput"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/bordes_input"
@@ -95,7 +95,7 @@
         app:startIconTint="#000000">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/apellidosInputR"
+            android:id="@+id/apellidosInput"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/bordes_input"
@@ -128,7 +128,7 @@
         app:startIconTint="#000000">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/correoInputR"
+            android:id="@+id/correoInput"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/bordes_input"
@@ -138,7 +138,7 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <Button
-        android:id="@+id/pwdInputR"
+        android:id="@+id/btnContraseñaR"
         android:layout_width="330dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
@@ -158,7 +158,7 @@
         app:layout_constraintVertical_bias="0.0" />
 
     <Button
-        android:id="@+id/btnContrasena2"
+        android:id="@+id/btnConfirmar"
         android:layout_width="330dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
@@ -174,7 +174,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/pwdInputR"
+        app:layout_constraintTop_toBottomOf="@+id/btnContraseñaR"
         app:layout_constraintVertical_bias="0.0" />
 
     <LinearLayout
@@ -185,7 +185,7 @@
         android:background="@color/amarillo"
         android:gravity="bottom|center_horizontal"
         android:orientation="vertical"
-        app:layout_constraintBottom_toTopOf="@+id/imageView3"
+        app:layout_constraintBottom_toTopOf="@+id/imagenLogo"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"

@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 import com.example.happybar.DAO.Usuario;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -19,8 +20,6 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-import java.util.ArrayList;
-
 public class AjustesActivity extends AppCompatActivity {
 
     private BottomNavigationView bmenu;
@@ -31,7 +30,7 @@ public class AjustesActivity extends AppCompatActivity {
     private DatabaseReference reference;
 
     private TextInputEditText nombreInput, apellidosInput, correoInput;
-    private Button btnContrasena2;
+    private Button btnConfirmar, btnCambiarPwd;
     private Usuario usu;
 
 
@@ -48,7 +47,8 @@ public class AjustesActivity extends AppCompatActivity {
         apellidosInput = findViewById(R.id.apellidosInput);
         correoInput = findViewById(R.id.correoInput);
         correoInput.setEnabled(false);
-        btnContrasena2 = findViewById(R.id.btnContrasena2);
+        btnConfirmar = findViewById(R.id.btnConfirmar);
+        btnCambiarPwd = findViewById(R.id.btnContraseñaR);
 
         //INSTANCIAR LA BBDD
         bbdd = FirebaseDatabase.getInstance("https://happybar-tfg-default-rtdb.europe-west1.firebasedatabase.app/");
@@ -75,13 +75,22 @@ public class AjustesActivity extends AppCompatActivity {
             }
         });
 
+        btnCambiarPwd.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast toast = Toast.makeText(getApplicationContext(), "No está funcional, se incluirá en siguientes versiones", Toast.LENGTH_SHORT);
+                toast.show();
+            }
+        });
 
-        btnContrasena2.setOnClickListener(new View.OnClickListener() {
+        btnConfirmar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 usu.setNombre(nombreInput.getText().toString());
                 usu.setApellido(apellidosInput.getText().toString());
                 reference.child(user).setValue(usu);
+                Toast toast = Toast.makeText(getApplicationContext(), "Cambios guardados con éxito", Toast.LENGTH_SHORT);
+                toast.show();
             }
         });
 

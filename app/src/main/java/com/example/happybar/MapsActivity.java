@@ -16,7 +16,9 @@ import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.RadioGroup;
+import android.widget.Toast;
 
 import com.example.happybar.DAO.Bar;
 import com.example.happybar.DAO.Usuario;
@@ -39,6 +41,7 @@ import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -65,6 +68,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     private FirebaseAuth auth;
     private String user;
     private ArrayList<String> favs;
+    private TextInputEditText buscador;
 
     //FILTROS
     RadioGroup filterDistan;
@@ -110,6 +114,16 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
 
+            }
+        });
+
+        //Buscador
+        buscador = findViewById(R.id.buscador);
+        buscador.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast toast = Toast.makeText(getApplicationContext(), "No está funcional, se incluirá en siguientes versiones", Toast.LENGTH_SHORT);
+                toast.show();
             }
         });
 
