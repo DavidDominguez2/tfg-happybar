@@ -58,8 +58,10 @@ public class FavoritosActivity extends AppCompatActivity {
                         for(DataSnapshot hijo: snapshot.getChildren()){
                             if(hijo.getValue().toString().equals(listaBares.get(pos).getId())){
                                 snapshot.getRef().child(hijo.getKey()).removeValue();
+
                             }
                         }
+
                        //Da fallo y se sale de la app
                         //listaBares.remove(pos);
                         //adapter.notifyItemRemoved(pos);
@@ -74,10 +76,11 @@ public class FavoritosActivity extends AppCompatActivity {
                 snackbar.setAction("OK", new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        //
+
                     }
                 });
                 snackbar.show();
+                startActivity(new Intent(getApplicationContext(), MapsActivity.class));
             }else{
                 Snackbar snackbar = Snackbar.make(getWindow().getDecorView().getRootView(), "No hay suficientes bares para eliminar", Snackbar.LENGTH_SHORT);
                 snackbar.setAction("OK", new View.OnClickListener() {
