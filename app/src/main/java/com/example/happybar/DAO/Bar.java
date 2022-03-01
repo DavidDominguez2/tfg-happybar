@@ -4,13 +4,15 @@ import java.util.ArrayList;
 
 public class Bar {
 
+    private String id;
     private double latitud;
     private double longitud;
     private String nombre;
     private ArrayList<Oferta> ofertas;
     private String rango;
 
-    public Bar(double latitud, double longitud, String nombre, ArrayList<Oferta> ofertas, String rango) {
+    public Bar(String id, double latitud, double longitud, String nombre, ArrayList<Oferta> ofertas, String rango) {
+        this.id = id;
         this.latitud = latitud;
         this.longitud = longitud;
         this.nombre = nombre;
@@ -19,6 +21,14 @@ public class Bar {
     }
     public Bar(){
         super();
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
     public double getLatitud() {

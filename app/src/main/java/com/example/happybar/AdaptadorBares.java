@@ -59,13 +59,13 @@ public class AdaptadorBares extends RecyclerView.Adapter<AdaptadorBares.BarViewH
 
     public class BarViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         TextView nombreTxt;
-       ImageView imagenBar;
+        ImageView imagenBar;
 
         public BarViewHolder(@NonNull View itemView) {
             super(itemView);
             //Se utiliza este View para enlazar el XML con Java
             this.nombreTxt = itemView.findViewById(R.id.nombreBar_list);
-           this.imagenBar = itemView.findViewById(R.id.imageBar);
+            this.imagenBar = itemView.findViewById(R.id.imageBar);
             itemView.setOnClickListener(this);
         }
 

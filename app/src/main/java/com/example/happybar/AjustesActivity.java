@@ -33,6 +33,7 @@ public class AjustesActivity extends AppCompatActivity {
     private TextInputEditText nombreInput, apellidosInput, correoInput;
     private Button btnContrasena2;
     private Usuario usu;
+    private ArrayList<String> favs;
 
 
     @Override
@@ -64,6 +65,7 @@ public class AjustesActivity extends AppCompatActivity {
                         nombreInput.setText(usu.getNombre());
                         apellidosInput.setText(usu.getApellido());
                         correoInput.setText(usu.getCorreo());
+                        favs = usu.getFavoritos();
                     }
 
                 }
@@ -96,8 +98,9 @@ public class AjustesActivity extends AppCompatActivity {
                         return true;
 
                     case R.id.Favoritos:
-
-                        startActivity(new Intent(getApplicationContext(), FavoritosActivity.class));
+                        Intent intent = new Intent(getApplicationContext(), FavoritosActivity.class);
+                        intent.putExtra("favoritos", favs);
+                        startActivity(intent);
                         return true;
 
                     case R.id.Ajustes:

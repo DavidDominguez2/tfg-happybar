@@ -3,6 +3,8 @@ package com.example.happybar;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -14,6 +16,7 @@ import com.example.happybar.DAO.Bar;
 import com.example.happybar.DAO.Oferta;
 import com.example.happybar.DAO.Usuario;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -29,20 +32,60 @@ public class FavoritosActivity extends AppCompatActivity {
     private BottomNavigationView bmenu;
     private FirebaseAuth auth;
     private FirebaseDatabase bbdd;
-    private DatabaseReference reference;
+    private DatabaseReference reference, referenceUsuario;
     private String user;
     private static ArrayList<String> favs;
     private RecyclerView rv;
     private AdaptadorBares adapter;
     ArrayList<Bar> listaBares;
+    Button btnEliminar;
 
 
     private AdaptadorBares.listenersInterfaz goDescription = new AdaptadorBares.listenersInterfaz(){
 
         @Override
         public void clickEnElementoCard(int pos) {
-           System.out.println("Aquí va la acción de ir al resumen de la carta");
+
+            if(listaBares.size() > 1){
+                //ELIMINAR DEL FIREBASE
+                referenceUsuario.child(user).child("favoritos").addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        for(DataSnapshot hijo: snapshot.getChildren()){
+                            if(hijo.getValue().toString().equals(listaBares.get(pos).getId())){
+                                snapshot.getRef().child(hijo.getKey()).removeValue();
+                            }
+                        }
+                        listaBares.remove(pos);
+                        adapter.notifyItemRemoved(pos);
+                    }
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+
+                    }
+                });
+
+                Snackbar snackbar = Snackbar.make(getWindow().getDecorView().getRootView(), "Bar eliminado", Snackbar.LENGTH_SHORT);
+                snackbar.setAction("OK", new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        //
+                    }
+                });
+                snackbar.show();
+            }else{
+                Snackbar snackbar = Snackbar.make(getWindow().getDecorView().getRootView(), "No hay suficientes bares para eliminar", Snackbar.LENGTH_SHORT);
+                snackbar.setAction("OK", new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        //
+                    }
+                });
+                snackbar.show();
+            }
+
         }
+
     };
 
 
@@ -51,8 +94,8 @@ public class FavoritosActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_favs);
 
-
         listaBares = new ArrayList<Bar>();
+        btnEliminar = findViewById(R.id.btnEliminar);
 
         Intent idRecibido = getIntent();
         favs = idRecibido.getStringArrayListExtra("favoritos");
@@ -62,6 +105,7 @@ public class FavoritosActivity extends AppCompatActivity {
 
         bbdd = FirebaseDatabase.getInstance("https://happybar-tfg-default-rtdb.europe-west1.firebasedatabase.app/");
         reference = bbdd.getReference().child("Bares");
+        referenceUsuario = bbdd.getReference().child("Usuario");
 
         adapter = new AdaptadorBares(listaBares, goDescription);
         rv = findViewById(R.id.recyclerView);
@@ -76,7 +120,7 @@ public class FavoritosActivity extends AppCompatActivity {
                     for (String bar: favs) {
                         if (hijo.getKey().equalsIgnoreCase(bar)) {
                             Bar b = hijo.getValue(Bar.class);
-                            System.out.println(b);
+                            b.setId(hijo.getKey());
                             listaBares.add(b);
                         }
                     }
@@ -90,9 +134,6 @@ public class FavoritosActivity extends AppCompatActivity {
 
             }
         });
-
-
-
 
         bmenu = findViewById(R.id.bottom_navigation);
 
@@ -124,6 +165,6 @@ public class FavoritosActivity extends AppCompatActivity {
         });
         bmenu.setSelectedItemId(R.id.Favoritos);
 
-        }
     }
+}
 

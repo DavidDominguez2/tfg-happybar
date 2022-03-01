@@ -37,9 +37,9 @@ public class RegisterActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
 
-        inputNombre = findViewById(R.id.nombreInputR);
-        inputApellidos = findViewById(R.id.apellidosInputR);
-        inputCorreo = findViewById(R.id.correoInputR);
+        inputNombre = findViewById(R.id.nombreInput);
+        inputApellidos = findViewById(R.id.apellidosInput);
+        inputCorreo = findViewById(R.id.correoInput);
         inputPwd = findViewById(R.id.pwdInputR);
 
         mDatabase = FirebaseDatabase.getInstance();
@@ -66,7 +66,7 @@ public class RegisterActivity extends AppCompatActivity {
                             toast.show();
                             FirebaseUser userF = auth.getCurrentUser();
                             favoritos.add("bar01");
-                            Usuario user = new Usuario(inputNombre.getText().toString(), inputApellidos.getText().toString(), inputCorreo.getText().toString(),favoritos );
+                            Usuario user = new Usuario(inputNombre.getText().toString(), inputApellidos.getText().toString(), inputCorreo.getText().toString(),favoritos);
                             mDatabase.getReference().child("Usuario").child(userF.getUid()).setValue(user);
 
 

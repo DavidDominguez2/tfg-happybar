@@ -43,7 +43,7 @@ public class LoginActivity extends AppCompatActivity {
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN).requestEmail().build();
         googleSignInClient = GoogleSignIn.getClient(this, gso);
 
-        inputNombre = findViewById(R.id.nombreInputR);
+        inputNombre = findViewById(R.id.nombreInput);
         inputPass = findViewById(R.id.pwdInput);
 
         btnLogin = findViewById(R.id.btnLogin);
