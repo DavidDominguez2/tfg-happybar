@@ -187,10 +187,11 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
      * it inside the SupportMapFragment. This method will only be triggered once the user has
      * installed Google Play services and returned to the app.
      */
+
+
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
-
         //DISEÑO MAPA
         try {
             boolean success = mMap.setMapStyle(MapStyleOptions.loadRawResourceStyle(this, R.raw.style_map));
@@ -278,39 +279,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         });
 
 
-
-        /*LocationManager locationManager = (LocationManager) MapsActivity.this.getSystemService(Context.LOCATION_SERVICE);
-        LocationListener locationListener = new LocationListener() {
-            @Override
-            public void onLocationChanged(Location location) {
-                LatLng miUbicacion = new LatLng(location.getLatitude(), location.getLongitude());
-                mMap.moveCamera(CameraUpdateFactory.newLatLng(miUbicacion));
-                CameraPosition cameraPosition = new CameraPosition.Builder()
-                        .target(miUbicacion)
-                        .zoom(10)
-                        .bearing(90)
-                        .tilt(45)
-                        .build();
-                mMap.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition));
-            }
-
-            @Override
-            public void onStatusChanged(String provider, int status, Bundle extras) {
-
-            }
-
-            @Override
-            public void onProviderEnabled(String provider) {
-
-            }
-
-            @Override
-            public void onProviderDisabled(String provider) {
-
-            }
-        };
-        locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 0, 0, locationListener);*/
-
         reference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -331,7 +299,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                             mMap.addMarker(new MarkerOptions().position(latLng(bar.getLatitud(), bar.getLongitud())).icon(BitmapDescriptorFactory.fromResource(R.drawable.diamante)).title(bar.getNombre()));
                             break;
                     }
-
                 }
             }
 
@@ -341,6 +308,13 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             }
         });
 
+        mMap.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
+            @Override
+            public boolean onMarkerClick(Marker marker) {
+                startActivity(new Intent(getApplicationContext(), OfertasActivity.class));
+                return false;
+            }
+        });
     }
 
     public LatLng latLng(double lat, double lng){

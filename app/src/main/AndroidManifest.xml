@@ -20,6 +20,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.HappyBar">
         <activity
+            android:name=".OfertasActivity"
+            android:exported="false" />
+        <activity
             android:name=".CreditosActivity"
             android:exported="false" />
         <activity

@@ -103,11 +103,8 @@ public class FavoritosActivity extends AppCompatActivity {
         setContentView(R.layout.activity_favs);
 
         listaBares = new ArrayList<Bar>();
-<<<<<<< HEAD
         //btnEliminar = findViewById(R.id.btnEliminar);
-=======
 
->>>>>>> 4693331a4d9db8d72e79c60cec322e9d886af85d
 
         Intent idRecibido = getIntent();
         favs = idRecibido.getStringArrayListExtra("favoritos");
