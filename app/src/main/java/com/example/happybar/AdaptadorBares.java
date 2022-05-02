@@ -65,7 +65,7 @@ public class AdaptadorBares extends RecyclerView.Adapter<AdaptadorBares.BarViewH
             super(itemView);
             //Se utiliza este View para enlazar el XML con Java
             this.nombreTxt = itemView.findViewById(R.id.nombreBar_list);
-            this.imagenBar = itemView.findViewById(R.id.imageBar);
+            this.imagenBar = itemView.findViewById(R.id.itemImage);
             itemView.setOnClickListener(this);
         }
 

@@ -1,6 +1,8 @@
 package com.example.happybar.DAO;
 
-public class Oferta {
+import java.io.Serializable;
+
+public class Oferta implements Serializable {
 
     private String descripcion;
     private String img;

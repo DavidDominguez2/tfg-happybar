@@ -15,12 +15,14 @@ import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.RadioGroup;
 import android.widget.Toast;
 
 import com.example.happybar.DAO.Bar;
+import com.example.happybar.DAO.Oferta;
 import com.example.happybar.DAO.Usuario;
 import com.example.happybar.databinding.ActivityIndexMapsBinding;
 import com.google.android.gms.location.FusedLocationProviderClient;
@@ -52,6 +54,7 @@ import com.google.firebase.database.ValueEventListener;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 
@@ -311,7 +314,26 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         mMap.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
             @Override
             public boolean onMarkerClick(Marker marker) {
-                startActivity(new Intent(getApplicationContext(), OfertasActivity.class));
+                reference.addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        for(DataSnapshot hijo: snapshot.getChildren()){
+                            Bar bar = hijo.getValue(Bar.class);
+                            if(bar.getNombre().equals(marker.getTitle())){
+                                ArrayList<Oferta> ofertas = bar.getOfertas();
+                                Intent intent = new Intent(getApplicationContext(), OfertasActivity.class);
+                                intent.putExtra("ofertas", ofertas);
+                                intent.putExtra("nombreBar", bar.getNombre());
+                                startActivity(intent);
+                            }
+                        }
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+
+                    }
+                });
                 return false;
             }
         });
