@@ -19,6 +19,7 @@
         android:roundIcon="@mipmap/logo_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.HappyBar">
+
         <activity
             android:name=".OfertasActivity"
             android:exported="false" />
@@ -34,8 +35,9 @@
         <activity
             android:name=".FavoritosActivity"
             android:exported="false" />
-        <!--<activity android:name=".SplashActivity" />-->
+        <!-- <activity android:name=".SplashActivity" /> -->
         <activity android:name=".MapsActivity" />
+        <activity android:name=".DescriptionOfertaActivity" />
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
              (See the file "res/values/google_maps_api.xml").

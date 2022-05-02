@@ -23,7 +23,11 @@ public class OfertasActivity extends AppCompatActivity {
     private AdaptadorOfertas.listenersInterfaz goDescription = new AdaptadorOfertas.listenersInterfaz() {
         @Override
         public void clickEnElementoCard(int pos) {
-            System.out.println("anal: " + ofertas.get(pos).getNombre());
+            Intent intent = new Intent(getApplicationContext(), DescriptionOfertaActivity.class);
+            intent.putExtra("titulo", ofertas.get(pos).getNombre());
+            intent.putExtra("precio", ofertas.get(pos).getPrecio());
+            intent.putExtra("descripcion", ofertas.get(pos).getDescripcion());
+            startActivity(intent);
         }
     };
 

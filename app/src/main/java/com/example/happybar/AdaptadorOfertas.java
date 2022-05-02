@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.happybar.DAO.Bar;
 import com.example.happybar.DAO.Oferta;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
@@ -45,13 +46,18 @@ public class AdaptadorOfertas extends RecyclerView.Adapter<AdaptadorOfertas.Ofer
     }
 
     @Override
-    public void onBindViewHolder(@NonNull AdaptadorOfertas.OfertaViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull OfertaViewHolder holder, int position) {
         Oferta oferta = listaOfertas.get(position);
 
         holder.getPrecio().setText(oferta.getPrecio());
         holder.getTitle().setText(oferta.getNombre());
         holder.getDescripcion().setText(oferta.getDescripcion());
-        holder.getImagenOferta().setImageResource(R.drawable.logo);
+
+        if(oferta.getImg().equalsIgnoreCase("")){
+            holder.getImagenOferta().setImageResource(R.drawable.logo);
+        }else {
+            Picasso.get().load(oferta.getImg()).into(holder.getImagenOferta());
+        }
 
     }
 
