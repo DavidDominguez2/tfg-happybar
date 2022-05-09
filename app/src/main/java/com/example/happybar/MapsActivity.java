@@ -349,4 +349,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         return location;
     }
 
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+    }
 }

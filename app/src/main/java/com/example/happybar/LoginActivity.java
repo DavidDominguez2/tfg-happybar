@@ -64,6 +64,8 @@ public class LoginActivity extends AppCompatActivity {
                             Intent intent = new Intent(getApplicationContext(), MapsActivity.class);
 
                             startActivity(intent);
+
+                            finish();
                         }else{
                             Snackbar.make(view, "Inicio de sesión incorrecto, email o contraseña incorrecta", Snackbar.LENGTH_SHORT).show();
                         }
