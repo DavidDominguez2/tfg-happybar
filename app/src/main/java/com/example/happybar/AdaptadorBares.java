@@ -66,7 +66,14 @@ public class AdaptadorBares extends RecyclerView.Adapter<AdaptadorBares.BarViewH
             //Se utiliza este View para enlazar el XML con Java
             this.nombreTxt = itemView.findViewById(R.id.nombreBar_list);
             this.imagenBar = itemView.findViewById(R.id.itemImage);
-            itemView.setOnClickListener(this);
+            this.imagenBar.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    int position = getAdapterPosition();
+                    mOnClickListener.clickEnElementoCard(position);
+                }
+            });
+           itemView.setOnClickListener(this);
         }
 
         public TextView getNombreTxt() {
@@ -87,8 +94,8 @@ public class AdaptadorBares extends RecyclerView.Adapter<AdaptadorBares.BarViewH
 
         @Override
         public void onClick(View v) {
-            int position = getAdapterPosition();
-            mOnClickListener.clickEnElementoCard(position);
+            //Optimizar el tabnav
+            System.out.println("envio a description ofertas baress");
         }
     }
 

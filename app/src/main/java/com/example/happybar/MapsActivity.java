@@ -108,7 +108,12 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
                     if (hijo.getKey().equalsIgnoreCase(user)) {
                         Usuario usu = hijo.getValue(Usuario.class);
-                        favs = usu.getFavoritos();
+                        if(usu.getFavoritos() == null) {
+                            favs = new ArrayList<>();
+                        }
+                        else {
+                            favs = usu.getFavoritos();
+                        }
                     }
 
                 }

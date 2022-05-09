@@ -50,9 +50,13 @@ public class FavoritosActivity extends AppCompatActivity {
         @Override
         public void clickEnElementoCard(int pos) {
 
-            if(listaBares.size() > 1){
+            if(listaBares.size() > 0){
                 //ELIMINAR DEL FIREBASE
-                referenceUsuario.child(user).child("favoritos").addValueEventListener(new ValueEventListener() {
+                String idBorrar = listaBares.get(pos).getId();
+                referenceUsuario.child(user).child("favoritos").child(String.valueOf(pos)).removeValue();
+                listaBares.remove(pos);
+                adapter.notifyItemRemoved(pos);
+                /*referenceUsuario.child(user).child("favoritos").addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
                         for(DataSnapshot hijo: snapshot.getChildren()){
@@ -63,14 +67,13 @@ public class FavoritosActivity extends AppCompatActivity {
                         }
 
                        //Da fallo y se sale de la app
-                        //listaBares.remove(pos);
-                        //adapter.notifyItemRemoved(pos);
+
                     }
                     @Override
                     public void onCancelled(@NonNull DatabaseError error) {
 
                     }
-                });
+                });*/
 
                 Snackbar snackbar = Snackbar.make(getWindow().getDecorView().getRootView(), "Bar eliminado", Snackbar.LENGTH_SHORT);
                 snackbar.setAction("OK", new View.OnClickListener() {
@@ -80,7 +83,7 @@ public class FavoritosActivity extends AppCompatActivity {
                     }
                 });
                 snackbar.show();
-                startActivity(new Intent(getApplicationContext(), MapsActivity.class));
+                finish();
             }else{
                 Snackbar snackbar = Snackbar.make(getWindow().getDecorView().getRootView(), "No hay suficientes bares para eliminar", Snackbar.LENGTH_SHORT);
                 snackbar.setAction("OK", new View.OnClickListener() {
@@ -125,15 +128,17 @@ public class FavoritosActivity extends AppCompatActivity {
         reference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                for(DataSnapshot hijo: snapshot.getChildren()){
-                    for (String bar: favs) {
-                        if (hijo.getKey().equalsIgnoreCase(bar)) {
-                            Bar b = hijo.getValue(Bar.class);
-                            b.setId(hijo.getKey());
-                            listaBares.add(b);
+                if(!favs.isEmpty()) {
+                    for (DataSnapshot hijo : snapshot.getChildren()) {
+                        for (String bar : favs) {
+                            if (hijo.getKey().equalsIgnoreCase(bar)) {
+                                Bar b = hijo.getValue(Bar.class);
+                                b.setId(hijo.getKey());
+                                listaBares.add(b);
+                            }
                         }
+                        adapter.notifyItemChanged(0);
                     }
-                    adapter.notifyItemChanged(0);
                 }
 
             }

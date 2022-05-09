@@ -11,7 +11,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-import com.example.happybar.databinding.ActivityIndexMapsBinding;
+import com.example.happybar.databinding.ActivityDescriptionOfertaBinding;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -24,7 +24,7 @@ import com.google.android.gms.maps.model.MarkerOptions;
 public class DescriptionOfertaActivity extends AppCompatActivity implements OnMapReadyCallback {
     //OBJETOS MAPA
     private GoogleMap mMap;
-    private ActivityIndexMapsBinding binding;
+    private ActivityDescriptionOfertaBinding binding;
     private FusedLocationProviderClient fusedLocationProviderClient;
 
     private TextView title, price, desciption;
@@ -34,7 +34,7 @@ public class DescriptionOfertaActivity extends AppCompatActivity implements OnMa
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        binding = ActivityIndexMapsBinding.inflate(getLayoutInflater());
+        binding = ActivityDescriptionOfertaBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
