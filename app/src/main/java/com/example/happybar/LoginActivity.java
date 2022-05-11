@@ -3,6 +3,7 @@ package com.example.happybar;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
 
@@ -146,5 +147,19 @@ public class LoginActivity extends AppCompatActivity {
             System.err.println(e.getStatus());
             updateUI(null);
         }
+    }
+
+    @Override
+    public void onBackPressed() {
+        System.out.println("hola");
+    }
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (keyCode == KeyEvent.KEYCODE_BACK) {
+            //preventing default implementation previous to android.os.Build.VERSION_CODES.ECLAIR
+            return true;
+        }
+        return super.onKeyDown(keyCode, event);
     }
 }

@@ -16,6 +16,7 @@ import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Bundle;
 import android.os.Parcelable;
+import android.view.KeyEvent;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.RadioGroup;
@@ -219,8 +220,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         fusedLocationProviderClient.getLastLocation().addOnSuccessListener(this, new OnSuccessListener<Location>() {
             @Override
             public void onSuccess(Location location) {
-                LatLng lct = new LatLng(location.getLatitude(), location.getLongitude());
-                //LatLng lct = new LatLng(1, 1);
+                //LatLng lct = new LatLng(location.getLatitude(), location.getLongitude());
+                LatLng lct = new LatLng(1, 1);
                 mMap.moveCamera(CameraUpdateFactory.newLatLng(lct));
 
                 CameraPosition cPosition = CameraPosition.builder().target(lct).zoom(13).tilt(45).build();
@@ -351,6 +352,15 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
     @Override
     public void onBackPressed() {
-        super.onBackPressed();
+        System.out.println("hola");
+    }
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (keyCode == KeyEvent.KEYCODE_BACK) {
+            //preventing default implementation previous to android.os.Build.VERSION_CODES.ECLAIR
+            return true;
+        }
+        return super.onKeyDown(keyCode, event);
     }
 }
