@@ -24,6 +24,9 @@ public class OfertasActivity extends AppCompatActivity {
         @Override
         public void clickEnElementoCard(int pos) {
             Intent intent = new Intent(getApplicationContext(), DescriptionOfertaActivity.class);
+            intent.putExtra("oferta", getIntent().getStringExtra("keyBar"));
+            intent.putExtra("lat", getIntent().getDoubleExtra("latitud", 0));
+            intent.putExtra("long", getIntent().getDoubleExtra("longitud", 0));
             intent.putExtra("titulo", ofertas.get(pos).getNombre());
             intent.putExtra("precio", ofertas.get(pos).getPrecio());
             intent.putExtra("descripcion", ofertas.get(pos).getDescripcion());
@@ -47,6 +50,7 @@ public class OfertasActivity extends AppCompatActivity {
         rv.setLayoutManager(new LinearLayoutManager(this));
         rv.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.VERTICAL));
         rv.setAdapter(adapter);
+
 
     }
 }

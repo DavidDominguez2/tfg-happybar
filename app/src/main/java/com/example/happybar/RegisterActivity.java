@@ -80,7 +80,6 @@ public class RegisterActivity extends AppCompatActivity {
                             toast.show();
                             FirebaseUser userF = auth.getCurrentUser();
                             favoritos.add("bar01");
-                            favoritos.add("bar07");
                             Usuario user = new Usuario(inputNombre.getText().toString(), inputApellidos.getText().toString(), inputCorreo.getText().toString(),favoritos);
                             mDatabase.getReference().child("Usuario").child(userF.getUid()).setValue(user);
 

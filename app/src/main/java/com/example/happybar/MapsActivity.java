@@ -330,6 +330,9 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                                 Intent intent = new Intent(getApplicationContext(), OfertasActivity.class);
                                 intent.putExtra("ofertas", ofertas);
                                 intent.putExtra("nombreBar", bar.getNombre());
+                                intent.putExtra("keyBar", hijo.getKey());
+                                intent.putExtra("latitud", bar.getLatitud());
+                                intent.putExtra("longitud", bar.getLongitud());
                                 startActivity(intent);
                             }
                         }

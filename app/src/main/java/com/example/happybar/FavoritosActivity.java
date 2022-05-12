@@ -56,24 +56,6 @@ public class FavoritosActivity extends AppCompatActivity {
                 referenceUsuario.child(user).child("favoritos").child(String.valueOf(pos)).removeValue();
                 listaBares.remove(pos);
                 adapter.notifyItemRemoved(pos);
-                /*referenceUsuario.child(user).child("favoritos").addValueEventListener(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(@NonNull DataSnapshot snapshot) {
-                        for(DataSnapshot hijo: snapshot.getChildren()){
-                            if(hijo.getValue().toString().equals(listaBares.get(pos).getId())){
-                                snapshot.getRef().child(hijo.getKey()).removeValue();
-
-                            }
-                        }
-
-                       //Da fallo y se sale de la app
-
-                    }
-                    @Override
-                    public void onCancelled(@NonNull DatabaseError error) {
-
-                    }
-                });*/
 
                 Snackbar snackbar = Snackbar.make(getWindow().getDecorView().getRootView(), "Bar eliminado", Snackbar.LENGTH_SHORT);
                 snackbar.setAction("OK", new View.OnClickListener() {
