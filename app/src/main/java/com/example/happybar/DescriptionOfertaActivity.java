@@ -5,8 +5,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 
 import android.Manifest;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.content.res.Resources;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -19,6 +21,7 @@ import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MapStyleOptions;
 import com.google.android.gms.maps.model.MarkerOptions;
@@ -97,13 +100,14 @@ public class DescriptionOfertaActivity extends AppCompatActivity implements OnMa
             }
         });
 
-
-
         onGo = findViewById(R.id.buttonOferta);
         onGo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                Intent intent = new Intent(Intent.ACTION_VIEW);
+                intent.setData(Uri.parse("geo:" + getIntent().getDoubleExtra("lat", 0) + "," + getIntent().getDoubleExtra("long", 0)));
+                Intent chooser = Intent.createChooser(intent, "Launch Maps");
+                startActivity(chooser);
             }
         });
 
@@ -137,10 +141,8 @@ public class DescriptionOfertaActivity extends AppCompatActivity implements OnMa
         mMap = googleMap;
         // Add a marker in Sydney and move the camera
         LatLng barOferta = new LatLng(getIntent().getDoubleExtra("lat", 0), getIntent().getDoubleExtra("long", 0));
-        mMap.addMarker(new MarkerOptions()
-                .position(barOferta)
-                .title("Marker in Sydney"));
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(barOferta));
+        mMap.addMarker(new MarkerOptions().position(barOferta));
+        mMap.animateCamera(CameraUpdateFactory.newCameraPosition(CameraPosition.builder().target(barOferta).zoom(15).tilt(45).build()));
     }
 
 }

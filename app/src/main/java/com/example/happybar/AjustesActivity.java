@@ -82,7 +82,8 @@ public class AjustesActivity extends AppCompatActivity {
         btnCambiarPwd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast toast = Toast.makeText(getApplicationContext(), "No está funcional, se incluirá en siguientes versiones", Toast.LENGTH_SHORT);
+                auth.sendPasswordResetEmail(auth.getCurrentUser().getEmail());
+                Toast toast = Toast.makeText(getApplicationContext(), "Se le ha enviado un correo a: " + auth.getCurrentUser().getEmail() + " con las instrucciones necesarias para el cambio de contraseña", Toast.LENGTH_SHORT);
                 toast.show();
             }
         });
