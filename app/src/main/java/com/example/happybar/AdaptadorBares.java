@@ -32,6 +32,7 @@ public class AdaptadorBares extends RecyclerView.Adapter<AdaptadorBares.BarViewH
 
     interface listenersInterfaz{
         void clickEnElementoCard(int pos);
+        void clickCard(int pos);
     }
 
 
@@ -95,7 +96,7 @@ public class AdaptadorBares extends RecyclerView.Adapter<AdaptadorBares.BarViewH
         @Override
         public void onClick(View v) {
             //Optimizar el tabnav
-            System.out.println("envio a description ofertas baress");
+            mOnClickListener.clickCard(getAdapterPosition());
         }
     }
 

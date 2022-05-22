@@ -65,7 +65,7 @@ public class FavoritosActivity extends AppCompatActivity {
                     }
                 });
                 snackbar.show();
-                finish();
+                //finish();
             }else{
                 Snackbar snackbar = Snackbar.make(getWindow().getDecorView().getRootView(), "No hay suficientes bares para eliminar", Snackbar.LENGTH_SHORT);
                 snackbar.setAction("OK", new View.OnClickListener() {
@@ -76,6 +76,18 @@ public class FavoritosActivity extends AppCompatActivity {
                 });
                 snackbar.show();
             }
+
+        }
+
+        @Override
+        public void clickCard(int pos) {
+            Intent intent = new Intent(getApplicationContext(), OfertasActivity.class);
+            intent.putExtra("ofertas", listaBares.get(pos).getOfertas());
+            intent.putExtra("nombreBar", listaBares.get(pos).getNombre());
+            intent.putExtra("keyBar", listaBares.get(pos).getId());
+            intent.putExtra("latitud", listaBares.get(pos).getLatitud());
+            intent.putExtra("longitud", listaBares.get(pos).getLongitud());
+            startActivity(intent);
 
         }
 
