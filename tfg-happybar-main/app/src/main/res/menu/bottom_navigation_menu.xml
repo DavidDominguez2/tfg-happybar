@@ -1,0 +1,23 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/Mapa"
+        android:enabled="true"
+        android:icon="@drawable/icono_mapa"
+        android:title="Mapa"/>
+    <item
+        android:id="@+id/Favoritos"
+        android:enabled="true"
+        android:icon="@drawable/icono_favoritos"
+        android:title="Favoritos"/>
+    <item
+        android:id="@+id/Ajustes"
+        android:enabled="true"
+        android:icon="@drawable/icono_config"
+        android:title="Ajustes"/>
+    <item
+        android:id="@+id/Salir"
+        android:enabled="true"
+        android:icon="@drawable/icono_salir"
+        android:title="Salir"/>
+
+</menu>
